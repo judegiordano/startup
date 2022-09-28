@@ -17,3 +17,11 @@
 [effective go](https://go.dev/doc/effective_go)
 
 [awesome go](https://github.com/avelino/awesome-go)
+
+```sh
+# ginkgo
+go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo@latest
+ginkgo -r
+go test ./...
+go test ./test/...
+```

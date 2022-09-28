@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"github.com/judegiordano/startup/pkg/logger"
+)
 
 func main() {
-	fmt.Println("yo")
+	logger.Init()
+	logger.Info("sup")
 }
