@@ -41,8 +41,13 @@ jobs:
         with:
           version: latest
 
-      - name: Build
+      - name: vet
+        run: go vet ./...
+
+      - name: build
         run: go build ./cmd/startup/
 
-      - name: Test
-        run: ginkgo -r
+      - name: test
+        run: |
+          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo@latest
+          ginkgo -r
