@@ -30,22 +30,17 @@ jobs:
           # cache dependencies
           cache: true
 
-      - name: clean / download / tidy
-        uses: actions/setup-go@v3
-        run: |
-          go mod clean
-          go mod download
-          go mod tidy
+      - run: go mod clean
+
+      - run: go mod download
+
+      - run: go mod tidy
 
       - name: lint
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
 
-      - name: build project
-        uses: actions/setup-go@v3
-        run: go build .\cmd\startup\
+      - run: go build .\cmd\startup\
 
-      - name: test
-        uses: actions/setup-go@v3
-        run: ginkgo -r
+      - run: ginkgo -r
