@@ -30,7 +30,7 @@ jobs:
           # cache dependencies
           cache: true
 
-      - run: go mod clean
+      - run: go clean
 
       - run: go mod download
 
