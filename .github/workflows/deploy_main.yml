@@ -41,6 +41,6 @@ jobs:
         with:
           version: latest
 
-      - run: go build .\cmd\startup\
+      - run: go build cmd/startup/
 
       - run: ginkgo -r
