@@ -30,11 +30,11 @@ jobs:
           # cache dependencies
           cache: true
 
-      - run: go clean
-
-      - run: go mod download
-
-      - run: go mod tidy
+      - name: mod
+        run: |
+          go clean
+          go mod download
+          go mod tidy
 
       - name: lint
         uses: golangci/golangci-lint-action@v3
