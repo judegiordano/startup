@@ -1,0 +1,44 @@
+name: deploy main
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-go@v3
+        with:
+          # go-version: 1.19
+          # get go version by go.mod file
+          go-version-file: 'go.mod'
+          # cache dependencies
+          cache: true
+
+      - run: go clean
+
+      - run: go mod download
+
+      - name: go lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+
+      - run: go test
+
+      - run: go build
