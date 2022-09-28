@@ -31,6 +31,7 @@ jobs:
           cache: true
 
       - name: clean / download / tidy
+        uses: actions/setup-go@v3
         run: |
           go mod clean
           go mod download
@@ -42,7 +43,9 @@ jobs:
           version: latest
 
       - name: build project
+        uses: actions/setup-go@v3
         run: go build .\cmd\startup\
 
       - name: test
+        uses: actions/setup-go@v3
         run: ginkgo -r
