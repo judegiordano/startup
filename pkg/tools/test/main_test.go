@@ -1,6 +1,8 @@
 package test
 
 import (
+	"encoding/json"
+	"net/http"
 	"testing"
 
 	"github.com/judegiordano/startup/pkg/tools"
@@ -28,6 +30,22 @@ var _ = Describe("Tools", func() {
 			Expect(err1).To(BeNil())
 			Expect(err2).To(BeNil())
 			Expect(cuid1).To(Not(Equal(cuid2)))
+		})
+	})
+	Context("Fetch", func() {
+		It("should perform a get request", func() {
+			type Todos []struct {
+				UserId    int    `json:"userId"`
+				Id        int    `json:"id"`
+				Title     string `json:"title"`
+				Completed bool   `json:"completed"`
+			}
+			r, err := http.Get("https://jsonplaceholder.typicode.com/todos")
+			Expect(err).To(BeNil())
+			defer r.Body.Close()
+			var todos Todos
+			json.NewDecoder(r.Body).Decode(&todos)
+			Expect(todos[0].UserId).To(Equal(1))
 		})
 	})
 })

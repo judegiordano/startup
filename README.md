@@ -22,6 +22,4 @@
 # ginkgo
 go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo@latest
 ginkgo -r
-go test ./...
-go test ./test/...
 ```
