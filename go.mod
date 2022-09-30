@@ -7,6 +7,7 @@ require (
 	github.com/gofiber/fiber/v2 v2.38.1
 	github.com/golang-module/carbon v1.6.9
 	github.com/gosimple/slug v1.12.0
+	github.com/joho/godotenv v1.3.0
 	github.com/lucsky/cuid v1.2.1
 	github.com/onsi/ginkgo/v2 v2.2.0
 	github.com/onsi/gomega v1.20.2
@@ -20,7 +21,6 @@ require (
 	github.com/gobuffalo/packr v1.30.1 // indirect
 	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/gosimple/unidecode v1.0.1 // indirect
-	github.com/joho/godotenv v1.3.0 // indirect
 	github.com/klauspost/compress v1.15.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
