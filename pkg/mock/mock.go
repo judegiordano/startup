@@ -46,8 +46,11 @@ type MockUser struct {
 	Addresses      []MockAddress     `fakesize:"1" json:"addresses"`
 }
 
-func CreateUser() MockUser {
+func CreateUser() (*MockUser, error) {
 	var user MockUser
-	gofakeit.Struct(&user)
-	return user
+	err := gofakeit.Struct(&user)
+	if err != nil {
+		return nil, err
+	}
+	return &user, err
 }

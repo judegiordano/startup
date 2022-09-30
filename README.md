@@ -22,4 +22,7 @@
 # ginkgo
 go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo@latest
 ginkgo -r
+# lint
+go get -u github.com/golangci/golangci-lint/cmd/golangci-lint
+golangci-lint run
 ```

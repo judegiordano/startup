@@ -16,7 +16,8 @@ func TestMockTest(t *testing.T) {
 var _ = Describe("Mock", func() {
 	Context("User", func() {
 		It("should create random user", func() {
-			user := mock.CreateUser()
+			user, err := mock.CreateUser()
+			Expect(err).To(BeNil())
 			Expect(len(user.Addresses)).To(Equal(1))
 			Expect(len(user.PaymentMethods)).To(Equal(2))
 		})

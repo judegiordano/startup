@@ -30,7 +30,12 @@ func PrintJson(i any) {
 	bytes, e := json.MarshalIndent(i, "", "    ")
 	if e != nil {
 		logger.Error(e)
+		return
 	}
-	json.Indent(&pretty, bytes, "", "\t")
+	e = json.Indent(&pretty, bytes, "", "\t")
+	if e != nil {
+		logger.Error(e)
+		return
+	}
 	fmt.Println(pretty.String())
 }

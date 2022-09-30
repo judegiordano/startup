@@ -50,4 +50,4 @@ jobs:
       - name: test
         run: |
           go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo@latest
-          ginkgo -r
+          ginkgo -r -p

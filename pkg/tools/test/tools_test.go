@@ -44,7 +44,8 @@ var _ = Describe("Tools", func() {
 			Expect(err).To(BeNil())
 			defer r.Body.Close()
 			var todos Todos
-			json.NewDecoder(r.Body).Decode(&todos)
+			err = json.NewDecoder(r.Body).Decode(&todos)
+			Expect(err).To(BeNil())
 			Expect(todos[0].UserId).To(Equal(1))
 		})
 	})
