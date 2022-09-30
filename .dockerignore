@@ -1,0 +1,9 @@
+.github
+.vscode
+.dockerignore
+LICENSE
+*.md
+*.exe
+*.env
+.editorconfig
+.gitignore

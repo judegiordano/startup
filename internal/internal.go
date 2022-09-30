@@ -6,7 +6,6 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
 	"github.com/judegiordano/startup/pkg/logger"
 )
 
@@ -34,15 +33,16 @@ func LoadInt(key string) int {
 	}
 	n, err := strconv.Atoi(s)
 	if err != nil {
-		logger.Fatal(fmt.Sprintf("error parsing %v", s))
+		logger.Fatal()
 	}
 	return n
 }
 
 func LoadConfig() Config {
-	if err := godotenv.Load(); err != nil {
-		logger.Fatal(err)
-	}
+	// not needed in docker image
+	// if err := godotenv.Load(); err != nil {
+	// 	logger.Fatal(fmt.Sprintf("error loading .env: %v", err))
+	// }
 	return Config{
 		Port: LoadInt("PORT"),
 	}
