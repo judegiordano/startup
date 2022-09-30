@@ -23,7 +23,7 @@ func main() {
 	app.Use(cors.New())
 	api := app.Group("/api")
 	api.Get("/dev", healthCheck)
-	app.Listen(fmt.Sprintf(":%v", 1234))
+	app.Listen(fmt.Sprintf(":%v", 8080))
 }
 
 func healthCheck(c *fiber.Ctx) error {
