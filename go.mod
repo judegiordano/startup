@@ -3,6 +3,7 @@ module github.com/judegiordano/startup
 go 1.19
 
 require (
+	github.com/brianvoe/gofakeit/v6 v6.19.0
 	github.com/golang-module/carbon v1.6.9
 	github.com/gosimple/slug v1.12.0
 	github.com/lucsky/cuid v1.2.1

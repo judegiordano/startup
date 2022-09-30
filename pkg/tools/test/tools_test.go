@@ -10,7 +10,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestIntegrationTest(t *testing.T) {
+func TestToolsTest(t *testing.T) {
 	RegisterFailHandler(Fail)
 	RunSpecs(t, "Tools Test Suite")
 }
