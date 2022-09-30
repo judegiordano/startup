@@ -19,3 +19,14 @@
 
 # Go workspace file
 go.work
+
+node_modules
+
+# sst
+.sst
+.build
+
+# misc
+.DS_Store
+
+*.env
