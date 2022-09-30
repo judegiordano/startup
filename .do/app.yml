@@ -1,0 +1,7 @@
+name: golang-api
+
+services:
+- name: web
+  github:
+    repo: judegiordano/startup
+    branch: main
