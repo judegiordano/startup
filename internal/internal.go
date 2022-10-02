@@ -6,7 +6,6 @@ import (
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
 	"github.com/judegiordano/startup/pkg/logger"
 )
 
@@ -41,9 +40,6 @@ func LoadString(key string) string {
 }
 
 func LoadConfig() Config {
-	if err := godotenv.Load(); err != nil {
-		logger.Fatal(fmt.Sprintf("error loading .env: %v", err))
-	}
 	return Config{
 		Stage:    LoadString("STAGE"),
 		MongoUri: LoadString("MONGO_URI"),
