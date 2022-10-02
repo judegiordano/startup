@@ -1,7 +1,28 @@
 {
-    "cSpell.words": [
-        "Errorln",
-        "Infoln",
-        "Warnln"
-    ]
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll.eslint": true
+  // },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "vscode.typescript-language-features",
+  //   "editor.formatOnSave": true
+  // },
+  // "eslint.validate": [
+  //   "javascript",
+  //   "typescript",
+  // ],
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "node_modules": true,
+    ".build": true,
+    ".sst": true
+  },
+  "cSpell.words": [
+    "Errorln",
+    "Infoln",
+    "Warnln"
+  ]
 }

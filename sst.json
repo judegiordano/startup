@@ -1,5 +1,5 @@
 {
-  "name": "startup-api",
+  "name": "go-startup",
   "region": "us-east-1",
   "main": "stacks/index.ts"
 }

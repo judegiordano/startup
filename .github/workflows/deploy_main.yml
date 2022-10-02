@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,6 +16,9 @@ permissions:
 jobs:
   build-release:
     runs-on: ubuntu-latest
+
+    environment: Production
+
     steps:
       - uses: actions/checkout@v3
 
@@ -30,31 +30,53 @@ jobs:
           # cache dependencies
           cache: true
 
-      - name: mod
+      - name: go mod
         run: |
           go clean
           go mod download
           go mod tidy
 
-      - name: lint
+      - name: go lint
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
 
-      - name: vet
+      - name: go lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+
+      - name: go vet
         run: go vet ./...
 
-      - name: build
+      - name: go build
         run: go build ./cmd/startup/
 
-      - name: test
+      - name: go test
         run: |
           go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo@latest
           ginkgo -r -p
 
-    # env
-    env:
-      STAGE: prod
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #  node steps
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+          cache: npm
 
+      - name: npm install
+        run: npm install --frozen-lockfile
+
+      - name: npm lint
+        run: npm run lint
+
+      - name: sst deploy
+        run: |
+          set -euxo pipefail
+          npx sst deploy --stage prod
+
+env:
+  STAGE: prod
+  MONGO_URI: ${{ secrets.MONGO_URI }}
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
