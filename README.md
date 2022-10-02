@@ -1,8 +1,8 @@
 # Go Startup Lambda
 [![Go Report Card](https://goreportcard.com/badge/github.com/judegiordano/startup)](https://goreportcard.com/report/github.com/judegiordano/startup)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/judegiordano/startup/blob/main/LICENSE)
-![Lines of code](https://img.shields.io/tokei/lines/github.com/judegiordano/startup)
 ![example workflow](https://github.com/judegiordano/startup/actions/workflows/deploy_main.yml/badge.svg)
+<!-- ![Lines of code](https://img.shields.io/tokei/lines/github.com/judegiordano/startup) -->
 
 ## Go Resources
 ---
