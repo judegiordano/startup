@@ -9,7 +9,7 @@ export default function main(app: App) {
 
 		environment: {
 			STAGE: stage,
-			MONGO_URI: "todo_add",
+			MONGO_URI: process.env.MONGO_URI ?? "mongodb://localhost:27017/go-startup",
 			REGION: app.region
 		}
 	});
