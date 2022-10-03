@@ -12,7 +12,10 @@ import (
 type Config struct {
 	Stage    string
 	MongoUri string
+	Database string
 }
+
+var Settings Config
 
 type ErrorResponse struct {
 	Code  int    `json:"code"`
@@ -22,7 +25,7 @@ type ErrorResponse struct {
 func LoadInt(key string) int {
 	s, found := os.LookupEnv(key)
 	if !found {
-		logger.Fatal(fmt.Sprintf(".env %v not set", s))
+		logger.Fatal(fmt.Sprintf(".env %v not set", key))
 	}
 	n, err := strconv.Atoi(s)
 	if err != nil {
@@ -34,15 +37,16 @@ func LoadInt(key string) int {
 func LoadString(key string) string {
 	s, found := os.LookupEnv(key)
 	if !found {
-		logger.Fatal(fmt.Sprintf(".env %v not set", s))
+		logger.Fatal(fmt.Sprintf(".env %v not set", key))
 	}
 	return s
 }
 
-func LoadConfig() Config {
-	return Config{
+func init() {
+	Settings = Config{
 		Stage:    LoadString("STAGE"),
 		MongoUri: LoadString("MONGO_URI"),
+		Database: LoadString("DATABASE"),
 	}
 }
 

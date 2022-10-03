@@ -26,7 +26,6 @@ func counter(size int) int {
 
 func main() {
 	start := time.Now()
-	logger.Init()
 	// start
 	count := counter(2_000)
 	logger.Info(count)

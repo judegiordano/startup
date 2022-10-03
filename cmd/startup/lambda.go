@@ -13,14 +13,11 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/judegiordano/startup/api/dev"
 	"github.com/judegiordano/startup/internal"
-	"github.com/judegiordano/startup/pkg/logger"
 )
 
 var fiberLambda *fiberadapter.FiberLambda
 
 func init() {
-	logger.Init()
-	internal.LoadConfig()
 	app := fiber.New(fiber.Config{
 		ErrorHandler:      internal.ErrorHandler,
 		JSONEncoder:       json.Marshal,

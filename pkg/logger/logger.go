@@ -6,7 +6,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func Init() {
+func init() {
 	logrus.SetFormatter(&logrus.TextFormatter{ForceColors: true, FullTimestamp: true})
 	logrus.SetOutput(os.Stdout)
 	logrus.SetLevel(logrus.InfoLevel)
