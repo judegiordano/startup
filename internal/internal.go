@@ -9,13 +9,26 @@ import (
 	"github.com/judegiordano/startup/pkg/logger"
 )
 
+type Config struct {
+	Stage    string
+	MongoUri string
+}
+
 type ErrorResponse struct {
 	Code  int    `json:"code"`
 	Error string `json:"error"`
 }
 
-type Config struct {
-	Port int
+func LoadInt(key string) int {
+	s, found := os.LookupEnv(key)
+	if !found {
+		logger.Fatal(fmt.Sprintf(".env %v not set", s))
+	}
+	n, err := strconv.Atoi(s)
+	if err != nil {
+		logger.Fatal(err)
+	}
+	return n
 }
 
 func LoadString(key string) string {
@@ -26,25 +39,10 @@ func LoadString(key string) string {
 	return s
 }
 
-func LoadInt(key string) int {
-	s, found := os.LookupEnv(key)
-	if !found {
-		logger.Fatal(fmt.Sprintf(".env %v not set", s))
-	}
-	n, err := strconv.Atoi(s)
-	if err != nil {
-		logger.Fatal()
-	}
-	return n
-}
-
 func LoadConfig() Config {
-	// not needed in docker image
-	// if err := godotenv.Load(); err != nil {
-	// 	logger.Fatal(fmt.Sprintf("error loading .env: %v", err))
-	// }
 	return Config{
-		Port: LoadInt("PORT"),
+		Stage:    LoadString("STAGE"),
+		MongoUri: LoadString("MONGO_URI"),
 	}
 }
 
