@@ -1,11 +1,11 @@
 package dev
 
 import (
-	"context"
-	"time"
+	"fmt"
+
+	"github.com/judegiordano/startup/internal/models/temp"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/judegiordano/startup/pkg/mongo"
 )
 
 type Health struct {
@@ -14,14 +14,12 @@ type Health struct {
 
 func healthCheck(c *fiber.Ctx) error {
 	c.Status(418)
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	temp := mongo.Collection("temp")
-	doc := Health{Message: "☕"}
-	if _, err := temp.InsertOne(ctx, &doc); err != nil {
+	doc := temp.Document{Message: "☕"}
+	done, err := doc.Save()
+	if err != nil {
 		return fiber.NewError(500, err.Error())
 	}
-	return c.JSON(&doc)
+	return c.JSON(Health{Message: fmt.Sprintf("inserted: %v", done.InsertedID)})
 }
 
 func Router(r fiber.Router) {
