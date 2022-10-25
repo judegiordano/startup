@@ -63,3 +63,13 @@ COPY --from=build /go/bin/app /
 CMD ["/app"]
 	
 ```
+
+```yml
+# dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: /
+    schedule:
+      interval: daily
+```
